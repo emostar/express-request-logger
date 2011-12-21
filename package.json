@@ -1,0 +1,16 @@
+{
+  "author": "Jon Keating <jon@licq.org>",
+  "name": "express-request-logger",
+  "description": "Log anything you want per request",
+  "version": "0.0.1",
+  "homepage": "https://github.com/mathrawka/express-request-logger",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mathrawka/express-request-logger.git"
+  },
+  "engines": {
+    "node": "~0.4.4"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
