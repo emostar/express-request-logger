@@ -28,9 +28,13 @@ exports.create = function(logger) {
       req.kvLog.response_time = (new Date() - req._rlStartTime);
 
       // Send the log off to winston
-      var level = req.kvLog._rlLevel;
+      var level = req.kvLog._rlLevel
+        , msg   = req.kvLog.message;
       delete req.kvLog._rlLevel;
-      logger.log(level, '', req.kvLog);
+      if (msg) {
+        delete req.kvLog.message;
+      }
+      logger.log(level, msg, req.kvLog);
     };
 
     next();

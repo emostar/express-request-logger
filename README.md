@@ -37,6 +37,8 @@ function (req, res, next) {
 }
 ````
 
+The key ```message``` is special, it will be removed from the object and be sent to the logger as the true message. It is optional, so if it is not included, the log will just contain an empty message.
+
 ## Dependencies
 
 Currently it is recommended to use [winston](https://github.com/flatiron/winston) as the logger object, but any object that can be called like `loggerObj.log(level, message, {key: value})` will work.
