@@ -29,9 +29,9 @@ exports.create = function(logger) {
 
       // Send the log off to winston
       var level = req.kvLog._rlLevel
-        , msg   = req.kvLog.message;
+        , msg   = req.kvLog.message || '';
       delete req.kvLog._rlLevel;
-      if (msg) {
+      if (msg.length) {
         delete req.kvLog.message;
       }
       logger.log(level, msg, req.kvLog);

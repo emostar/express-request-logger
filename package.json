@@ -2,7 +2,7 @@
   "author": "Jon Keating <jon@licq.org>",
   "name": "express-request-logger",
   "description": "Log anything you want per request",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/mathrawka/express-request-logger",
   "repository": {
     "type": "git",
