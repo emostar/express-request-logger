@@ -1,3 +1,5 @@
+var url = require('url')
+
 exports.create = function(logger) {
 
   return function(req, res, next) {
@@ -10,7 +12,7 @@ exports.create = function(logger) {
     req.kvLog = {
         date: req._rlStartTime.toISOString()
       , method: req.method
-      , url: req.originalUrl
+      , url: url.parse(req.originalUrl).pathname
       , _rlLevel: 'info' // internal usage
       , type: 'reqlog'
     };
