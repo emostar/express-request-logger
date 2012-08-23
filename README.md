@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/mathrawka/express-request-logger.png)](http://travis-ci.org/mathrawka/express-request-logger)
 # express-request-logger
 
 An easy way to create a key/value pair list to be logged on each request in express.
