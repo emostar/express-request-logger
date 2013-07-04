@@ -22,8 +22,14 @@ var winston   = require('winston');
 var reqLogger = require('express-request-logger');
 
 var logger = new (winston.Logger)({ transports: [ new (winston.transports.Console)() ] });
-app.use(reqLogger.create(logger));
+app.use(reqLogger.create(logger, options));
 ````
+
+#### Options
+
+Optionally takes an options object.
+
+ - `excludes`: an array of url paths that will be excluded from logging.
 
 ### Middleware Usage
 
