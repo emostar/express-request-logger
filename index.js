@@ -1,6 +1,6 @@
 var url = require('url')
 
-exports.create = function(logger) {
+exports.create = function(logger, options) {
 
   return function(req, res, next) {
     var rEnd = res.end;
@@ -24,6 +24,8 @@ exports.create = function(logger) {
       res.end(chunk, encoding);
 
       // And do the work we want now (logging!)
+      // Conditionally do so if url matches a specific exclude.
+      if (options && options.excludes && options.excludes.indexOf(req.kvLog.url) > -1) return;
 
       // Save a few more variables that we can only get at the end
       req.kvLog.status = res.statusCode;
