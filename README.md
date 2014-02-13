@@ -22,7 +22,7 @@ var winston   = require('winston');
 var reqLogger = require('express-request-logger');
 
 var logger = new (winston.Logger)({ transports: [ new (winston.transports.Console)() ] });
-app.use(reqLogger.create(logger, options));
+app.use(reqLogger.create(logger, options, extraRequestFields));
 ````
 
 #### Options
@@ -30,6 +30,16 @@ app.use(reqLogger.create(logger, options));
 Optionally takes an options object.
 
  - `excludes`: an array of url paths that will be excluded from logging.
+
+#### extraRequestFields
+
+Optionally takes extra request fields to log. This is either a string or array of strings that include request fields that will be extracted from the request and loged.
+
+For example:
+
+app.use(reqLogger.create(logger, options, ['headers']));
+
+will (in addition to default logging) log headers of request, which is useful in development env.
 
 ### Middleware Usage
 

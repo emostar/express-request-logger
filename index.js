@@ -1,6 +1,6 @@
 var url = require('url')
 
-exports.create = function(logger, options) {
+exports.create = function(logger, options, extraRequestFields) {
 
   return function(req, res, next) {
     var rEnd = res.end;
@@ -17,6 +17,9 @@ exports.create = function(logger, options) {
       , type: 'reqlog'
     };
 
+
+
+
     // Proxy the real end function
     res.end = function(chunk, encoding) {
       // Do the work expected
@@ -30,6 +33,16 @@ exports.create = function(logger, options) {
       // Save a few more variables that we can only get at the end
       req.kvLog.status = res.statusCode;
       req.kvLog.response_time = (new Date() - req._rlStartTime);
+
+      if (extraRequestFields) {
+        if (Array.isArray(extraRequestFields)) {
+          extraRequestFields.forEach(function(extraField) {
+            req.kvLog[extraField] = req[extraField];
+          })
+        } else {
+          req.kvLog[extraRequestFields] = req[extraRequestFields];
+        }
+      }
 
       // Send the log off to winston
       var level = req.kvLog._rlLevel
